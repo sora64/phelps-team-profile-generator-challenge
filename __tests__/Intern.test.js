@@ -1,13 +1,12 @@
-const { expect, it } = require('@jest/globals');
-const intern = require('../lib/Intern.js');
+const Intern = require('../lib/Intern.js');
 
 it('creates an intern object', () => {
     const intern = new Intern('Matt');
 
     expect(intern.name).toBe('Matt');
-    expect(intern.id).toBe(123456);
-    expect(intern.email).toBe('matt_intern@employment.com');
-    expect(intern.school).toBe(expect.any(String));
+    expect(intern.id).toEqual(expect.any(String));
+    expect(intern.email).toEqual(expect.any(String));
+    expect(intern.school).toEqual(expect.any(String));
 });
 
 it("gets intern's name", () => {
@@ -19,7 +18,7 @@ it("gets intern's name", () => {
 it("gets intern's id number", () => {
     const intern = new Intern('Matt');
 
-    expect(intern.getId()).toEqual(expect.any(Number));
+    expect(intern.getId()).toEqual(expect.any(String));
 });
 
 it("gets intern's school", () => {
