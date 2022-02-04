@@ -1,12 +1,13 @@
+const { expect } = require('@jest/globals');
 const Engineer = require('../lib/Engineer.js');
 
 it('creates an engineer object', () => {
     const engineer = new Engineer('Matt');
 
     expect(engineer.name).toBe('Matt');
-    expect(engineer.id).toBe(123456);
-    expect(engineer.email).toBe('matt_engineer@employment.com');
-    expect(engineer.github).toBe('mattGH');
+    expect(engineer.id).toEqual(expect.any(String));
+    expect(engineer.email).toEqual(expect.any(String));
+    expect(engineer.github).toEqual(expect.any(String));
 });
 
 it("gets engineer's name", () => {
@@ -18,7 +19,7 @@ it("gets engineer's name", () => {
 it("gets engineer's id number", () => {
     const engineer = new Engineer('Matt');
 
-    expect(engineer.getId()).toEqual(expect.any(Number));
+    expect(engineer.getId()).toEqual(expect.any(String));
 });
 
 it("gets engineer's GitHubprofile link", () => {
