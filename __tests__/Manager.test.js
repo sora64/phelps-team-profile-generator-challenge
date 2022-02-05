@@ -9,20 +9,11 @@ it('creates a manager object', () => {
     expect(manager.officeNumber).toEqual(expect.any(String));
 });
 
-it("gets manager's name", () => {
-    const manager = new Manager('Matt');
-
-    expect(manager.getName()).toEqual(expect.any(String));
-});
-
-it("gets manager's id number", () => {
-    const manager = new Manager('Matt');
-
-    expect(manager.getId()).toEqual(expect.any(String));
-});
 
 it("gets manager's role", () => {
     const manager = new Manager('Matt');
 
-    expect(manager.getRole()).toEqual('Manager');
+    const role = 'Manager';
+
+    expect(manager.getRole(role)).toEqual('Manager');
 });

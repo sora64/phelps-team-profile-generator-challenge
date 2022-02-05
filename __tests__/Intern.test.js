@@ -9,26 +9,19 @@ it('creates an intern object', () => {
     expect(intern.school).toEqual(expect.any(String));
 });
 
-it("gets intern's name", () => {
-    const intern = new Intern('Matt');
-
-    expect(intern.getName()).toEqual(expect.any(String));
-});
-
-it("gets intern's id number", () => {
-    const intern = new Intern('Matt');
-
-    expect(intern.getId()).toEqual(expect.any(String));
-});
 
 it("gets intern's school", () => {
     const intern = new Intern('Matt');
 
-    expect(intern.getSchool()).toEqual(expect.any(String));
+    const school = 'UoRandom';
+
+    expect(intern.getSchool(school)).toEqual(expect.any(String));
 });
 
 it("gets intern's role", () => {
     const intern = new Intern('Matt');
 
-    expect(intern.getRole()).toEqual('Intern');
+    const role = 'Intern';
+
+    expect(intern.getRole(role)).toEqual('Intern');
 });

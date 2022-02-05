@@ -9,26 +9,18 @@ it('creates an engineer object', () => {
     expect(engineer.github).toEqual(expect.any(String));
 });
 
-it("gets engineer's name", () => {
-    const engineer = new Engineer('Matt');
-
-    expect(engineer.getName()).toEqual(expect.any(String));
-});
-
-it("gets engineer's id number", () => {
-    const engineer = new Engineer('Matt');
-
-    expect(engineer.getId()).toEqual(expect.any(String));
-});
-
 it("gets engineer's GitHubprofile link", () => {
     const engineer = new Engineer('Matt');
 
-    expect(engineer.getGithub()).toEqual(expect.any(String));
+    const github = 'random1234';
+
+    expect(engineer.getGithub(github)).toEqual(expect.any(String));
 });
 
 it("gets engineer's role", () => {
     const engineer = new Engineer('Matt');
 
-    expect(engineer.getRole()).toEqual('Engineer');
+    const role = 'Engineer';
+
+    expect(engineer.getRole(role)).toEqual('Engineer');
 });

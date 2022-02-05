@@ -12,23 +12,31 @@ it('creates an employee object', () => {
 it("gets employee's name", () => {
     const employee = new Employee('Matt');
 
-    expect(employee.getName()).toEqual(expect.any(String));
+    const name = 'Matt'
+
+    expect(employee.getName(name)).toEqual(expect.any(String));
 });
 
 it("gets employee's id ", () => {
     const employee = new Employee('Matt');
 
-    expect(employee.getId()).toEqual(expect.any(String));
+    const id = '123';
+
+    expect(employee.getId(id)).toEqual(expect.any(String));
 });
 
 it("gets employee's email", () => {
     const employee = new Employee('Matt');
 
-    expect(employee.getEmail()).toEqual(expect.any(String));
+    const email = 'abc_employee@employment.com';
+
+    expect(employee.getEmail(email)).toEqual(expect.any(String));
 });
 
 it("gets employee's role", () => {
     const employee = new Employee('Matt');
 
-    expect(employee.getRole()).toEqual('Employee');
+    const role = 'Employee';
+
+    expect(employee.getRole(role)).toEqual('Employee');
 });
