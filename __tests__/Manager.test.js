@@ -1,13 +1,12 @@
-const { expect } = require('@jest/globals');
-const manager = require('../lib/Manager.js');
+const Manager = require('../lib/Manager.js');
 
-it('creates an manager object', () => {
+it('creates a manager object', () => {
     const manager = new Manager('Matt');
 
     expect(manager.name).toBe('Matt');
-    expect(manager.id).toBe(123456);
-    expect(manager.email).toBe('matt_manager@employment.com');
-    expect(manager.officeNumber).toBe(expect.any(Number));
+    expect(manager.id).toEqual(expect.any(String));
+    expect(manager.email).toEqual(expect.any(String));
+    expect(manager.officeNumber).toEqual(expect.any(String));
 });
 
 it("gets manager's name", () => {
@@ -19,7 +18,7 @@ it("gets manager's name", () => {
 it("gets manager's id number", () => {
     const manager = new Manager('Matt');
 
-    expect(manager.getId()).toEqual(expect.any(Number));
+    expect(manager.getId()).toEqual(expect.any(String));
 });
 
 it("gets manager's role", () => {
