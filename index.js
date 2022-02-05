@@ -1,3 +1,3 @@
 const Generator = require('./lib/Generator');
 
-new Generator().generatePage();
+new Generator().gatherInfo();
