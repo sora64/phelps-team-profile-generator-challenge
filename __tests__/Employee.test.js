@@ -5,7 +5,7 @@ it('creates an employee object', () => {
     const employee = new Employee('Matt');
 
     expect(employee.name).toBe('Matt');
-    expect(employee.id).toEqual(expect.any(String));
+    expect(employee.id).toEqual(expect.any(Number));
     expect(employee.email).toEqual(expect.any(String));
 });
 
@@ -20,9 +20,9 @@ it("gets employee's name", () => {
 it("gets employee's id ", () => {
     const employee = new Employee('Matt');
 
-    const id = '123';
+    const id = 123;
 
-    expect(employee.getId(id)).toEqual(expect.any(String));
+    expect(employee.getId(id)).toEqual(expect.any(Number));
 });
 
 it("gets employee's email", () => {
