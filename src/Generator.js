@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const Employee = require('../lib/Employee');
 const Engineer = require('../lib/Engineer');
 const Manager = require('../lib/Manager');
 const Intern = require('../lib/Intern');
@@ -18,9 +19,10 @@ Generator.prototype.gatherInfo = function() {
             }
         )
         .then(({ role }) => {
+            Employee.prototype.role = role;
             if (role === 'Engineer') {
                 this.currentEmployee = 'Engineer';
-                console.log('You entered "Engineer".');
+                Employee.prototype.getRole(role);
                 return inquirer.prompt(
                     {
                         type: 'input',
@@ -35,7 +37,7 @@ Generator.prototype.gatherInfo = function() {
                 });  
             } else if (role === 'Manager') {
                 this.currentEmployee = 'Manager';
-                console.log('You entered "Manager".');
+                Employee.prototype.getRole(role);
                 return inquirer.prompt(
                     {
                         type: 'number',
@@ -50,7 +52,7 @@ Generator.prototype.gatherInfo = function() {
                 });
             } else if (role === 'Intern') {
                 this.currentEmployee = 'Intern';
-                console.log('You enetered "Intern".');
+                Employee.prototype.getRole(role);
                 return inquirer.prompt(
                     {
                         type: 'input',
