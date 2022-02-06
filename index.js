@@ -1,3 +1,4 @@
+const fs = require('fs');
 const generatePage = require('./src/generatePage');
 const inquirer = require('inquirer');
 const Employee = require('./lib/Employee');
@@ -13,17 +14,41 @@ const questions = [
         type: 'list',
         name: 'role',
         message: 'What type of employee would you like to add?',
-        choices: ['Engineer', 'Manager', 'Intern']
+        choices: ['Engineer', 'Manager', 'Intern'],
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please provide the requisite information.');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'name',
-        message: "What is your employee's name?"
+        message: "What is your employee's name?",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please provide the requisite information.');
+                return false;
+            }
+        }
     },
     {
-        type: 'number',
+        type: 'input',
         name: 'id',
-        message: "What is your employee's id?"
+        message: "What is your employee's id?",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please provide the requisite information.');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
@@ -50,15 +75,31 @@ const gatherInfo = answers => {
             {
                 type: 'input',
                 name: 'github',
-                message: "What is your engineer's GitHub username?"
+                message: "What is your engineer's GitHub username?",
+                validate: input => {
+                    if (input) {
+                        return true;
+                    } else {
+                        console.log('Please provide the requisite information.');
+                        return false;
+                    }
+                }
             }
         )
     } else if (role === 'Manager') {
         addQuestions.push(
             {
-                type: 'number',
+                type: 'input',
                 name: 'officeNumber',
-                message: "What is your manager's office number?"
+                message: "What is your manager's office number?",
+                validate: input => {
+                    if (input) {
+                        return true;
+                    } else {
+                        console.log('Please provide the requisite information.');
+                        return false;
+                    }
+                }
             }
         )
     } else if (role === "Intern") {
@@ -66,11 +107,45 @@ const gatherInfo = answers => {
             {
                 type: 'input',
                 name: 'school',
-                message: "What is the name of your interns's school?"
+                message: "What is the name of your interns's school?",
+                validate: input => {
+                    if (input) {
+                        return true;
+                    } else {
+                        console.log('Please provide the requisite information.');
+                        return false;
+                    }
+                }
             }
         )
     }
     return addQuestions;
+};
+
+const writeToFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist/index.html', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+
+const newEmployeeRoster = employeeData => {
+    return writeToFile(generatePage(employeeData))
+        .then(writeToFileResponse => {
+            console.log(writeToFileResponse);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };
 
 const init = () => {
@@ -101,10 +176,9 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        generatePage(employeeArray);
+                        newEmployeeRoster(JSON.stringify(employeeArray));
                     };
                 });
-                return engineer;
             } else if (officeNumber) {
                 Manager.prototype.getOfficeNumber(officeNumber);
                 const manager = new Manager(dataArray[0].name, dataArray[0].id, dataArray[0].email, dataArray[0].role, dataArray[1].officeNumber);
@@ -122,10 +196,8 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        generatePage(employeeArray);
-                    };
+                        newEmployeeRoster(JSON.stringify(employeeArray));                    };
                 });
-                return manager;
             } else if (school) {
                 Intern.prototype.getSchool(school);
                 const intern = new Intern(dataArray[0].name, dataArray[0].id, dataArray[0].email, dataArray[0].role, dataArray[1].school);
@@ -143,10 +215,8 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        generatePage(employeeArray);
-                    };
+                        newEmployeeRoster(JSON.stringify(employeeArray));                    };
                 });
-                return intern;
             };
         });
     });
