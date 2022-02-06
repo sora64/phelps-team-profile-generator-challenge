@@ -101,7 +101,7 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        console.log(employeeArray);
+                        generatePage(employeeArray);
                     };
                 });
                 return engineer;
@@ -122,7 +122,7 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        console.log(employeeArray);
+                        generatePage(employeeArray);
                     };
                 });
                 return manager;
@@ -143,7 +143,7 @@ const init = () => {
                         dataArray = [];
                         init();
                     } else {
-                        console.log(employeeArray);
+                        generatePage(employeeArray);
                     };
                 });
                 return intern;
