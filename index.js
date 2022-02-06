@@ -5,68 +5,148 @@ const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 
-const gatherInfo = () => {    
-    return inquirer
-        .prompt(
+let dataArray = [];
+const employeeArray = []
+
+const questions = [
+    {
+        type: 'list',
+        name: 'role',
+        message: 'What type of employee would you like to add?',
+        choices: ['Engineer', 'Manager', 'Intern']
+    },
+    {
+        type: 'input',
+        name: 'name',
+        message: "What is your employee's name?",
+    },
+    {
+        type: 'number',
+        name: 'id',
+        message: "What is your employee's id?",
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: "What is your employee's email address?",
+    }
+];
+
+const gatherInfo = answers => {
+    const role = answers.role;
+    const name = answers.name;
+    const id = answers.id;
+    const email = answers.email;
+    Employee.prototype.getRole(role);
+    Employee.prototype.getName(name);
+    Employee.prototype.getId(id);
+    Employee.prototype.getEmail(email);
+    const addQuestions = [];
+    if (role === 'Engineer') {
+        addQuestions.push(
             {
-                type: 'list',
-                name: 'role',
-                message: 'What type of employee would you like to add?',
-                choices: ['Engineer', 'Manager', 'Intern']
+                type: 'input',
+                name: 'github',
+                message: "What is your engineer's GitHub username?"
             }
         )
-        .then(({ role }) => {
-            Employee.prototype.role = role;
-            if (role === 'Engineer') {
-                this.currentEmployee = 'Engineer';
-                Employee.prototype.getRole(role);
-                return inquirer.prompt(
-                    {
-                        type: 'input',
-                        name: 'github',
-                        message: "What is your enineer's GitHub username?"
-                    }
-                ).then(({ github }) => {
-                    Engineer.prototype.github = github;
-                    Engineer.prototype.getGithub(github);
-                    Engineer.prototype.getInfo();
-                    return new Engineer;
-                });  
-            } else if (role === 'Manager') {
-                this.currentEmployee = 'Manager';
-                Employee.prototype.getRole(role);
-                return inquirer.prompt(
-                    {
-                        type: 'number',
-                        name: 'officeNumber',
-                        message: "What is your manager's office number?"
-                    }
-                ).then(({ officeNumber }) => {
-                    Manager.prototype.officeNumber = officeNumber;
-                    Manager.prototype.getOfficeNumber(officeNumber);
-                    Manager.prototype.getInfo();
-                    return new Manager;
-                });
-            } else if (role === 'Intern') {
-                this.currentEmployee = 'Intern';
-                Employee.prototype.getRole(role);
-                return inquirer.prompt(
-                    {
-                        type: 'input',
-                        name: 'school',
-                        message: "What is the name of your interns's school?"
-                    }
-                ).then(({ school }) => {
-                    Intern.prototype.school = school;
-                    Intern.prototype.getSchool(school);
-                    Intern.prototype.getInfo();
-                    return new Intern;
-                });  
-            };
-        });
+    } else if (role === 'Manager') {
+        addQuestions.push(
+            {
+                type: 'number',
+                name: 'officeNumber',
+                message: "What is your manager's office number?"
+            }
+        )
+    } else if (role === "Intern") {
+        addQuestions.push(
+            {
+                type: 'input',
+                name: 'school',
+                message: "What is the name of your interns's school?"
+            }
+        )
+    }
+    return addQuestions;
 };
 
-gatherInfo()
-    // .then(indexData => {
-    //     return generatePage(indexData)
-    // });
+const init = () => {
+    inquirer
+    .prompt(questions)
+    .then((answers) => {
+        dataArray.push(answers);
+        inquirer.prompt(gatherInfo(answers))
+        .then((gatheredInfo) => {
+            dataArray.push(gatheredInfo);
+            const github = gatheredInfo.github;
+            const officeNumber = gatheredInfo.officeNumber;
+            const school = gatheredInfo.school
+            if (github) {
+                Engineer.prototype.getGithub(github);
+                const engineer = new Engineer(dataArray[0].name, dataArray[0].id, dataArray[0].email, dataArray[0].role, dataArray[1].github);
+                employeeArray.push(engineer);
+                inquirer.prompt(
+                    {
+                        type: 'confirm',
+                        name: 'again',
+                        message: 'Would you like to add another employee?',
+                        default: true
+                    }
+                )
+                .then(({ again }) => {
+                    if (again) {
+                        dataArray = [];
+                        init();
+                    } else {
+                        console.log(employeeArray);
+                    };
+                });
+                return engineer;
+            } else if (officeNumber) {
+                Manager.prototype.getOfficeNumber(officeNumber);
+                const manager = new Manager(dataArray[0].name, dataArray[0].id, dataArray[0].email, dataArray[0].role, dataArray[1].officeNumber);
+                employeeArray.push(manager);
+                inquirer.prompt(
+                    {
+                        type: 'confirm',
+                        name: 'again',
+                        message: 'Would you like to add another employee?',
+                        default: true
+                    }
+                )
+                .then(({ again }) => {
+                    if (again) {
+                        dataArray = [];
+                        init();
+                    } else {
+                        console.log(employeeArray);
+                    };
+                });
+                return manager;
+            } else if (school) {
+                Intern.prototype.getSchool(school);
+                const intern = new Intern(dataArray[0].name, dataArray[0].id, dataArray[0].email, dataArray[0].role, dataArray[1].school);
+                employeeArray.push(intern);
+                inquirer.prompt(
+                    {
+                        type: 'confirm',
+                        name: 'again',
+                        message: 'Would you like to add another employee?',
+                        default: true
+                    }
+                )
+                .then(({ again }) => {
+                    if (again) {
+                        dataArray = [];
+                        init();
+                    } else {
+                        console.log(employeeArray);
+                    };
+                });
+                return intern;
+            };
+        });
+    });
+};
+
+init();
