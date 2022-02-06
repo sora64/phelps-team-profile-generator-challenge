@@ -18,17 +18,20 @@ const questions = [
     {
         type: 'input',
         name: 'name',
-        message: "What is your employee's name?",
+        message: "What is your employee's name?"
     },
     {
         type: 'number',
         name: 'id',
-        message: "What is your employee's id?",
+        message: "What is your employee's id?"
     },
     {
         type: 'input',
         name: 'email',
-        message: "What is your employee's email address?",
+        message: "What is your employee's email address? (Make sure to enter a valid email address!)",
+        validate: function(email) {
+            return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(email);
+        }
     }
 ];
 
