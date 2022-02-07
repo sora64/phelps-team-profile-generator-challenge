@@ -22,7 +22,7 @@
 
   ## Installation
 
-  Make sure to install the required packages with npm install before running the application.
+  Make sure to install the required packages with "npm install" before running the application.
 
   ## Usage
 
