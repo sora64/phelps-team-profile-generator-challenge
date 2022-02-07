@@ -76,7 +76,7 @@ module.exports = generatePage => {
                 Employees
             </h1>
         </header>
-        <main class="section">
+        <main class="section has-background-white-ter">
             <div id="employeeContainer columns">
                 ${employeeDivs(newData)}
                 ${employeeDivs(newData)}
