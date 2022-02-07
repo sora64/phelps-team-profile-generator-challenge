@@ -1,3 +1,4 @@
+// required packages and imports
 const fs = require('fs');
 const generatePage = require('./src/generatePage');
 const inquirer = require('inquirer');
@@ -6,9 +7,12 @@ const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 
+// array for completed Employee objects of varying types
 const employeeArray = []
+// array for data gathered from Employee objects
 let dataArray = [];
 
+// initial inquirer prompts
 const questions = [
     {
         type: 'list',
@@ -60,6 +64,7 @@ const questions = [
     }
 ];
 
+// uses data from the inquirer prompts to add specific questions based on the type of Employee specified by the user
 const gatherInfo = answers => {
     const role = answers.role;
     const name = answers.name;
@@ -122,6 +127,7 @@ const gatherInfo = answers => {
     return addQuestions;
 };
 
+// writes the index.html file
 const writeToFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/index.html', fileContent, err => {
@@ -138,6 +144,7 @@ const writeToFile = fileContent => {
     });
 };
 
+// promise needed for the .then functionality in init()
 const newEmployeeRoster = employeeData => {
     return writeToFile(generatePage(employeeData))
         .then(writeToFileResponse => {
@@ -148,6 +155,7 @@ const newEmployeeRoster = employeeData => {
         });
 };
 
+// function that chains methods to tell the application what to do and when to do it; it also allows the user to add more than one Employee object at a time
 const init = () => {
     inquirer
     .prompt(questions)
@@ -222,4 +230,5 @@ const init = () => {
     });
 };
 
+// init() function call, which initializes the application when "node index.js" is input by the user into the terminal
 init();

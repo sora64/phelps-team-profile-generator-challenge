@@ -1,13 +1,19 @@
+// date-and-time package import
 const date = require('date-and-time');
 
+// uses data gathered from the user via inquirer (in index.js) to create the layout for the index.html file
 module.exports = generatePage => {
     const data = generatePage;
 
+    // parses data returned from the inquirer (in index.js) so it's readable here
     const newDataArray = JSON.parse(data);
 
+    // array for Employee objects' email addresses, which is useful for adding mailto functionality
     const emailArray = [];
+    // collects information specific to each type of Employee object: ofice number, GitHub username, or school
     const otherArray = [];
 
+    // pushes relevant Employee object data to the otherArray
     for (let i = 0; i < newDataArray.length; i++) {
         emailArray.push('<a href="mailto:' + newDataArray[i].email + '">' + newDataArray[i].email + '</a>');
 
@@ -20,9 +26,10 @@ module.exports = generatePage => {
         };
     };
 
+    // allows the user to see what they've input without having to navigate to the created index.html file right away
     console.log(newDataArray);
 
-
+    // the following six methods are used to create sections on the index.html page for the information from up to six Employee objects
     const employeeDivOne = array => {
         return `
         <div class="column is-two-fifths block mx-3 card">
@@ -139,10 +146,11 @@ module.exports = generatePage => {
         }
     };
 
+    // initializes the date-and-time package
     const now = new Date();
-
+    // formats data returned from the date-and-time package
     const rightNow = date.format(now, 'MMM DD YYYY');
-
+    // the main format for the index.html file
     return `
     <!DOCTYPE html>
     <html lang="en">
