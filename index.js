@@ -70,7 +70,23 @@ const gatherInfo = answers => {
     Employee.prototype.getId(id);
     Employee.prototype.getEmail(email);
     const addQuestions = [];
-    if (role === 'Manager') {
+    if (role === 'Engineer') {
+        addQuestions.push(
+            {
+                type: 'input',
+                name: 'github',
+                message: "What is your engineer's GitHub username?",
+                validate: input => {
+                    if (input) {
+                        return true;
+                    } else {
+                        console.log('Please provide the requisite information.');
+                        return false;
+                    }
+                }
+            }
+        )
+    } else if (role === 'Manager') {
         addQuestions.push(
             {
                 type: 'input',
@@ -86,22 +102,6 @@ const gatherInfo = answers => {
                 }
             }
         )
-    } else if (role === 'Engineer') {
-            addQuestions.push(
-                {
-                    type: 'input',
-                    name: 'github',
-                    message: "What is your engineer's GitHub username?",
-                    validate: input => {
-                        if (input) {
-                            return true;
-                        } else {
-                            console.log('Please provide the requisite information.');
-                            return false;
-                        }
-                    }
-                }
-            )
     } else if (role === "Intern") {
         addQuestions.push(
             {

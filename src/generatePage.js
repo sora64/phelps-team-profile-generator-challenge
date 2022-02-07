@@ -25,8 +25,10 @@ module.exports = generatePage => {
 
     const employeeDivOne = array => {
         return `
-        <div class="column block card">
-            <h1 class="card-header-title is-size-3">${array[0].role}</h1>
+        <div class="column is-two-fifths block mx-3 card">
+            <div class="card-header has-background-grey-light">
+                <h1 class="card-header-title is-size-3">${array[0].role}</h1>
+            </div>
             <div class="card-content">
                 <h3 class="is-size-4">Name: ${array[0].name}</h3>
                 <h3 class="is-size-4">ID: ${array[0].id}</h3>
@@ -42,8 +44,10 @@ module.exports = generatePage => {
             return '';
         } else {
             return `
-            <div class="column block card">
-                <h1 class="card-header-title is-size-3">${array[1].role}</h1>
+            <div class="column is-two-fifths block mx-3 card">
+                <div class="card-header has-background-grey-light">
+                    <h1 class="card-header-title is-size-3">${array[1].role}</h1>
+                </div>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${array[1].name}</h3>
                     <h3 class="is-size-4">ID: ${array[1].id}</h3>
@@ -60,8 +64,10 @@ module.exports = generatePage => {
             return '';
         } else {
             return `
-            <div class="column block card">
-                <h1 class="card-header-title is-size-3">${array[2].role}</h1>
+            <div class="column is-two-fifths block mx-3 card">
+                <div class="card-header has-background-grey-light">
+                    <h1 class="card-header-title is-size-3">${array[2].role}</h1>
+                </div>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${array[2].name}</h3>
                     <h3 class="is-size-4">ID: ${array[2].id}</h3>
@@ -78,8 +84,10 @@ module.exports = generatePage => {
             return '';
         } else {
             return `
-            <div class="column block card">
-                <h1 class="card-header-title is-size-3">${array[3].role}</h1>
+            <div class="column is-two-fifths block mx-3 card">
+                <div class="card-header has-background-grey-light">
+                    <h1 class="card-header-title is-size-3">${array[3].role}</h1>
+                </div>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${array[3].name}</h3>
                     <h3 class="is-size-4">ID: ${array[3].id}</h3>
@@ -96,8 +104,10 @@ module.exports = generatePage => {
             return '';
         } else {
             return `
-            <div class="column block card">
-                <h1 class="card-header-title is-size-3">${array[4].role}</h1>
+            <div class="column is-two-fifths block mx-3 card">
+                <div class="card-header has-background-grey-light">
+                    <h1 class="card-header-title is-size-3">${array[4].role}</h1>
+                </div>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${array[4].name}</h3>
                     <h3 class="is-size-4">ID: ${array[4].id}</h3>
@@ -114,8 +124,10 @@ module.exports = generatePage => {
             return '';
         } else {
             return `
-            <div class="column block card">
-                <h1 class="card-header-title is-size-3">${array[5].role}</h1>
+            <div class="column is-two-fifths block mx-3 card">
+                <div class="card-header has-background-grey-light">
+                    <h1 class="card-header-title is-size-3">${array[5].role}</h1>
+                </div>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${array[5].name}</h3>
                     <h3 class="is-size-4">ID: ${array[5].id}</h3>
@@ -149,7 +161,7 @@ module.exports = generatePage => {
             </h1>
         </header>
         <main class="section has-background-white-ter">
-            <div id="employeeContainer columns">
+            <div id="employeeContainer" class="columns is-centered is-multiline">
                 ${employeeDivOne(newDataArray)}
                 ${employeeDivTwo(newDataArray)}
                 ${employeeDivThree(newDataArray)}
