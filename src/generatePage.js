@@ -86,9 +86,9 @@ module.exports = generatePage => {
                 ${employeeDivs(newData)}
             </div>
         </main>
-        <footer class="section has-background-grey">
-            <h1 class="is-size-5 has-text-white">
-                Made by Alan Phelps &copy ${rightNow}
+        <footer class="footer has-background-grey">
+            <h1 class="is-size-4 has-text-white">
+                Made by Alan Phelps, &copy ${rightNow}
             </h1>
         </footer>
     </body>
