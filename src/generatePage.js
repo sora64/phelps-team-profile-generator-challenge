@@ -35,7 +35,7 @@ module.exports = generatePage => {
     const employeeDivs = array => {
         for (i = 0; i < array.length; i++) {
             return `
-            <div class="employee column is-two-fifths m-3 card">
+            <div class="column is-two-fifths block card">
                 <h1 class="card-header-title is-size-3">${roleArray[i]}</h1>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${nameArray[i]}</h3>
