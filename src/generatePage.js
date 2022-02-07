@@ -138,14 +138,14 @@ module.exports = generatePage => {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Employee Roster</title>
+        <title>Team Roster</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     </head>
 
     <body>
         <header class="navbar is-danger section">
             <h1 class="navbar-brand is-size-1">
-                Employees
+                Team Roster
             </h1>
         </header>
         <main class="section has-background-white-ter">
