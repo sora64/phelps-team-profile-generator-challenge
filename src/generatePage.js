@@ -9,23 +9,20 @@ module.exports = generatePage => {
     const idArray = [];
     const emailArray = [];
     const roleArray = [];
-
-    const githubArray = [];
-    const officeNumberArray = [];
-    const schoolArray = [];
+    const otherArray = [];
 
     for (let i = 0; i < newData.length; i++) {
         nameArray.push(newData[i].name);
         idArray.push(newData[i].id);
-        emailArray.push(newData[i].email);
+        emailArray.push('<a href="mailto:' + newData[i].email + '">' + newData[i].email + '</a>');
         roleArray.push(newData[i].role);
 
         if (newData[i].github) {
-            githubArray.push(newData[i].github)
+            otherArray.push('Github: <a href="https://github.com/' + newData[i].github +'/">' + newData[i].github + '</a>'); 
         } else if (newData[i].officeNumber) {
-            officeNumberArray.push(newData[i].officeNumber);
+            otherArray.push('Office Number: ' + newData[i].officeNumber);
         } else if (newData[i].school) {
-            schoolArray.push(newData[i].school);
+            otherArray.push('School: ' + newData[i].school);
         };
     };
 
@@ -33,23 +30,25 @@ module.exports = generatePage => {
     console.log(idArray);
     console.log(emailArray);
     console.log(roleArray);
-    console.log(githubArray);
-    console.log(officeNumberArray);
-    console.log(schoolArray);
+    console.log(otherArray);
 
-    const names = array => {
+    const employeeDivs = array => {
         for (i = 0; i < array.length; i++) {
-            return array[i];
-        }
-    }
-
-    const namesHeadings = array => {
-        for (i = 0; i< array.length; i++) {
             return `
-            <h2>${names(array[i])}</h2>
-            `
+            <div>
+                <h1>${roleArray[i]}</h1>
+                <h2>Name: ${nameArray[i]}</h2>
+                <h3>ID: ${idArray[i]}</h3>
+                <h3>Email: ${emailArray[i]}</h3>
+                <h3>${otherArray[i]}</h3>
+            </div>
+            `;
         };
     };
+
+    // const times = newData.length;
+
+    // Array.from({length: times}, () => employeeDivs(newData));
 
     return `
     <!DOCTYPE html>
@@ -62,8 +61,7 @@ module.exports = generatePage => {
     </head>
 
     <body>
-        <h1>${newData[0].role}</h1>
-    ${namesHeadings(nameArray)}
+${employeeDivs(newData)}
     </body>
 
     </html>
