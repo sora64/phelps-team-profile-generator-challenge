@@ -1,3 +1,5 @@
+const date = require('date-and-time');
+
 module.exports = generatePage => {
     const data = generatePage;
 
@@ -32,10 +34,15 @@ module.exports = generatePage => {
     console.log(roleArray);
     console.log(otherArray);
 
+    const now = new Date();
+
+    const rightNow = date.format(now, 'MMM DD YYYY');
+
+
     const employeeDivs = array => {
         for (i = 0; i < array.length; i++) {
             return `
-            <div class="column is-two-fifths block card">
+            <div class="column block card">
                 <h1 class="card-header-title is-size-3">${roleArray[i]}</h1>
                 <div class="card-content">
                     <h3 class="is-size-4">Name: ${nameArray[i]}</h3>
@@ -79,6 +86,11 @@ module.exports = generatePage => {
                 ${employeeDivs(newData)}
             </div>
         </main>
+        <footer class="section has-background-grey">
+            <h1 class="is-size-5 has-text-white">
+                Made by Alan Phelps &copy ${rightNow}
+            </h1>
+        </footer>
     </body>
 
     </html>
