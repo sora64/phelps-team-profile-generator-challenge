@@ -35,12 +35,14 @@ module.exports = generatePage => {
     const employeeDivs = array => {
         for (i = 0; i < array.length; i++) {
             return `
-            <div>
-                <h1>${roleArray[i]}</h1>
-                <h2>Name: ${nameArray[i]}</h2>
-                <h3>ID: ${idArray[i]}</h3>
-                <h3>Email: ${emailArray[i]}</h3>
-                <h3>${otherArray[i]}</h3>
+            <div class="employee column card">
+                <h1 class="card-header-title is-size-3">${roleArray[i]}</h1>
+                <div class="card-content">
+                    <h3 class="is-size-4">Name: ${nameArray[i]}</h3>
+                    <h3 class="is-size-4">ID: ${idArray[i]}</h3>
+                    <h3 class="is-size-4">Email: ${emailArray[i]}</h3>
+                    <h3 class="is-size-4">${otherArray[i]}</h3>
+                </div>
             </div>
             `;
         };
@@ -54,14 +56,24 @@ module.exports = generatePage => {
     <!DOCTYPE html>
     <html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Profile Generator</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     </head>
 
     <body>
-${employeeDivs(newData)}
+        <header class="navbar is-danger">
+            <h1 class="navbar-brand is-size-1">
+                Employees
+            </h1>
+        </header>
+        <main>
+            <div id="employeeContainer columns section">
+            ${employeeDivs(newData)}
+            </div>
+        </main>
     </body>
 
     </html>

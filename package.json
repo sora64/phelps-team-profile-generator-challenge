@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,12 +20,10 @@
   },
   "homepage": "https://github.com/sora64/phelps-team-profile-generator-challenge#readme",
   "dependencies": {
+    "bulma": "^0.9.3",
     "inquirer": "^8.2.0"
   },
   "devDependencies": {
     "jest": "^27.4.7"
-  },
-  "scripts" : {
-    "test": "jest" 
   }
 }
